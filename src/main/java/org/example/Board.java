@@ -82,10 +82,8 @@ public class Board {
     public boolean checkWin(char symbol) {
         for (int row = 0; row < rows; row++) {
             for (int col = 0; col < cols; col++) {
-                if (checkDirection(row, col, 1, 0, symbol) ||
-                        checkDirection(row, col, 0, 1, symbol) ||
-                        checkDirection(row, col, 1, 1, symbol) ||
-                        checkDirection(row, col, 1, -1, symbol)) {
+                // Fix irányok ellenőrzése delta nélkül
+                if (checkWinFromPosition(row, col, symbol)) {
                     return true;
                 }
             }
@@ -93,18 +91,27 @@ public class Board {
         return false;
     }
 
-    private boolean checkDirection(int row, int col, int rowDelta, int colDelta, char symbol) {
-        int count = 0;
-        for (int i = 0; i < 4; i++) {
-            int r = row + i * rowDelta;
-            int c = col + i * colDelta;
-            if (r >= 0 && r < rows && c >= 0 && c < cols && grid[r][c] == symbol) {
-                count++;
-            } else {
-                break;
-            }
+    private boolean checkWinFromPosition(int row, int col, char symbol) {
+        // Ellenőrizze a 4 irányt (fel, le, balra, jobbra)
+        if (row + 3 < rows && grid[row][col] == symbol && grid[row + 1][col] == symbol &&
+                grid[row + 2][col] == symbol && grid[row + 3][col] == symbol) {
+            return true; // Függőleges
         }
-        return count == 4;
+        if (col + 3 < cols && grid[row][col] == symbol && grid[row][col + 1] == symbol &&
+                grid[row][col + 2] == symbol && grid[row][col + 3] == symbol) {
+            return true; // Vízszintes
+        }
+        if (row + 3 < rows && col + 3 < cols && grid[row][col] == symbol &&
+                grid[row + 1][col + 1] == symbol && grid[row + 2][col + 2] == symbol &&
+                grid[row + 3][col + 3] == symbol) {
+            return true; // Diagonális (balról jobbra)
+        }
+        if (row - 3 >= 0 && col + 3 < cols && grid[row][col] == symbol &&
+                grid[row - 1][col + 1] == symbol && grid[row - 2][col + 2] == symbol &&
+                grid[row - 3][col + 3] == symbol) {
+            return true; // Diagonális (jobbról balra)
+        }
+        return false;
     }
 
     private int columnToIndex(String column) {
@@ -129,7 +136,8 @@ public class Board {
         }
         return grid[0][colIndex] == emptySlot;
     }
-    // Pálya kiírása a savetoFile-ba
+
+    // Pálya kiírása a fájlba
     public void saveToFile(String filePath) throws IOException {
         try (FileWriter writer = new FileWriter(filePath)) {
             // Írjuk a tábla méretét
@@ -144,8 +152,10 @@ public class Board {
             }
         }
     }
+
     public char[][] getGrid() {
         return grid;
     }
-
 }
+
+
