@@ -1,5 +1,6 @@
 package org.example;
 
+import nye.database.Database;
 import org.junit.jupiter.api.*;
 import java.sql.*;
 import static org.junit.jupiter.api.Assertions.*;

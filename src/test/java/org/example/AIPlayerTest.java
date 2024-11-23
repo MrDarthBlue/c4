@@ -1,5 +1,7 @@
 package org.example;
 
+import nye.players.AIPlayer;
+import nye.tabla.Board;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 

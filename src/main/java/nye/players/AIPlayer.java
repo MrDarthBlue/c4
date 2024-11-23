@@ -1,4 +1,6 @@
-package org.example;
+package nye.players;
+
+import nye.tabla.Board;
 
 import java.util.Random;
 

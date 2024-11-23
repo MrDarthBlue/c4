@@ -1,4 +1,4 @@
-package org.example;
+package nye.database;
 import java.sql.*;
 
 public class Database {

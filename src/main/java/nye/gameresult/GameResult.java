@@ -1,4 +1,4 @@
-package org.example;
+package nye.gameresult;
 import java.util.Objects;
 
 public final class GameResult {

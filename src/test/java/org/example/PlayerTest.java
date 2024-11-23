@@ -1,5 +1,6 @@
 package org.example;
 
+import nye.players.Player;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 

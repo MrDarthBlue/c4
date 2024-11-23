@@ -1,4 +1,6 @@
-package org.example;
+package nye.tabla;
+import nye.players.Player;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;

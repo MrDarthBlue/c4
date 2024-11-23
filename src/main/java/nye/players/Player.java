@@ -1,4 +1,4 @@
-package org.example;
+package nye.players;
 import java.util.Objects;
 
 public class Player {

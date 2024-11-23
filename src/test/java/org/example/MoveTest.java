@@ -1,5 +1,6 @@
 package org.example;
 
+import nye.move.Move;
 import org.testng.annotations.Test;
 import static org.junit.jupiter.api.Assertions.*;
 

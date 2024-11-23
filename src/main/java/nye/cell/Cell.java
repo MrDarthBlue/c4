@@ -1,4 +1,4 @@
-package org.example;
+package nye.cell;
 import java.util.Objects;
 
 public final class Cell {
